@@ -1,0 +1,23 @@
+name: ADP Context A4 canonical observation offline contracts
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  adp-context-canonical-offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Run canonical observation negative tests
+        run: python -B -m unittest discover -s tests -p 'test_canonical_checkpoint.py' -v
+      - name: Assert 33 A4 cases
+        run: python -B -c "import unittest; n=unittest.defaultTestLoader.discover('tests',pattern='test_canonical_checkpoint.py').countTestCases(); print('A4_TEST_COUNT='+str(n)); assert n==33"
+      - name: Assert offline only
+        run: python -B -m adp_context.canonical_checkpoint --self-check

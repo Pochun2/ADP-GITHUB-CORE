@@ -19,10 +19,11 @@ jobs:
       - name: All offline contract tests
         run: python -B -m unittest discover -s tests -v
       - name: Test count guard
-        run: python -B -c "import unittest; n=unittest.defaultTestLoader.discover('tests').countTestCases(); print('TEST_COUNT='+str(n)); assert n==144"
+        run: python -B -c "import unittest; n=unittest.defaultTestLoader.discover('tests').countTestCases(); print('TEST_COUNT='+str(n)); assert n==177"
       - name: Offline boundaries
         run: |
           python -B -m adp_context self-check
           python -B -m adp_context.github_evidence --self-check
           python -B -m adp_context.checkpoint_store --self-check
           python -B -m adp_context.github_checkpoint self-check
+          python -B -m adp_context.canonical_checkpoint --self-check
