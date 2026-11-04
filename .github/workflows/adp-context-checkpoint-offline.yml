@@ -1,0 +1,23 @@
+name: ADP CTX-A3 local candidate checkpoint contracts (offline)
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  adp-context-checkpoint-offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: A1 A2 A3 full offline regression
+        run: python -B -m unittest discover -s tests -v
+      - name: A3 self check
+        run: python -B -m adp_context.checkpoint_store --self-check
+      - name: Security boundary
+        run: echo 'OFFLINE ONLY / NO API TOKEN / NO APP KEY / NO CHECK RUN WRITE / GATE A BLOCKED'
