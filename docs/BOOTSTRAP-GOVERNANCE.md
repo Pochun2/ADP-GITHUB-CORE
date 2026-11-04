@@ -1,10 +1,10 @@
-# ADP Core bootstrap governance
+# ADP Core bootstrap governance (updated 2026-11-04)
 
-1. Admin/operator must explicitly run `Start-ADPCoreBootstrap.ps1 -Apply` locally. Default is read-only.
-2. The remote repository is created with a README-only `main` baseline. It is **not** considered protected before successful active Ruleset creation and readback verification.
-3. **Default visibility is Public** for this ADP source-only repository, which is intended to contain no private data. Public visibility does not waive active Ruleset verification. `-Visibility Private` remains an explicit override and may need a paid GitHub plan.
-4. Rule for `main`: PR required, strict required status check `adp-context-suite` from GitHub Actions App 15368, no bypass, no force push/delete, zero human reviews (independent policy not yet implemented).
-5. All imported context code goes to a feature branch and Draft PR, never directly to `main`. CI must pass before operator-controlled Squash Merge.
-6. The 144 tests are offline contracts only; the GitHub Publisher is an operator-invoked candidate path, not a credentialed source of truth or autonomous resume permit.
-7. No key/token/price/broker API values in commits, Actions, or SAFE REPORT.
-8. Keep Gate A BLOCKED/UNVERIFIED; Trusted Issuer NOT_DEPLOYED; T+1 PAUSED_MANUAL.
+1. The protected Public repository is `Pochun2/ADP-GITHUB-CORE`. No credentials or personal context may be stored on Public branches.
+2. Verified history: PR #1 Squash Merge `1e72b3282436872ee1adc707b5daae176dcdc3d4`; PR #2 Squash Merge `024b04ac8216125ba6258556f68d2587fcc6875a`.
+3. `main` has active Ruleset `26509773` enforcing PR-only changes, no deletion/force push, strict required `adp-context-suite` from GitHub Actions App `15368`, required human approvals `0` and no bypass.
+4. Owner's `ADP-GOV-AUTOMATION-001 v1.0` decision permits separate fixed-hash merge controller to automatically Squash Merge after new-Head CI and policy verification; old blanket third-party review requirement no longer applies to ADP routine work. The decision is specific to ADP, not other governance repos.
+5. High-risk workflow and policy-file changes must be fixed-content allowlisted by a separately packaged controller; Candidate PR content is not allowed to weaken that controller, Ruleset or Issuer controls.
+6. A1–A4 modules were validated as offline contracts. Canonical protected publication is a separate task, not implied by CI or A4 source code presence.
+7. Canonical public Journal contains task metadata only; it never grants autonomous resume, external attestation, Gate A or account/order permissions.
+8. Trusted Issuer remains NOT_DEPLOYED. Gate A remains BLOCKED_UNVERIFIED; YuantaMC T+1 PAUSED_MANUAL; NO ACCOUNT_ORDER.
