@@ -19,7 +19,7 @@ jobs:
       - name: All offline contract tests
         run: python -B -m unittest discover -s tests -v
       - name: Test count guard
-        run: python -B -c "import unittest; n=unittest.defaultTestLoader.discover('tests').countTestCases(); print('TEST_COUNT='+str(n)); assert n==177"
+        run: python -B -c "import unittest; n=unittest.defaultTestLoader.discover('tests').countTestCases(); print('TEST_COUNT='+str(n)); assert n==201"
       - name: Offline boundaries
         run: |
           python -B -m adp_context self-check
@@ -27,3 +27,6 @@ jobs:
           python -B -m adp_context.checkpoint_store --self-check
           python -B -m adp_context.github_checkpoint self-check
           python -B -m adp_context.canonical_checkpoint --self-check
+          python -B -m adp_context.canonical_publication --self-check
+      - name: Canonical public checkpoint integrity (no authorization)
+        run: python -B -m adp_context.canonical_publication --repo-root . --repository Pochun2/ADP-GITHUB-CORE --baseline-sha 024b04ac8216125ba6258556f68d2587fcc6875a

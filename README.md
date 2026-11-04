@@ -1,11 +1,21 @@
-# ADP-GITHUB-CORE — candidate bootstrap
+# ADP-GITHUB-CORE — protected portable context engine
 
-Cross-project **context continuity** contracts, GitHub read-only observations, local checkpoint journals, and GitHub Draft PR candidate publisher.
+Repository `Pochun2/ADP-GITHUB-CORE` implements A1–A4 GitHub context continuity, hash-chained candidate Journals, fail-closed observation contracts, and an offline canonical publication verifier. A1–A3-GH entered protected `main` via PR #1 (`1e72b3282436872ee1adc707b5daae176dcdc3d4`); A4 via PR #2 (`024b04ac8216125ba6258556f68d2587fcc6875a`).
 
-**NOT DEPLOYED / NOT ATTESTED:** no real Trusted Issuer, no autonomous merge, no account/order, Gate A BLOCKED/UNVERIFIED. This repo is *not* the issuer's credential store.
+## Governance
 
-Code provenance: integrated unchanged A1 v0.1 + A2 v0.2 + A3 v0.3 + A3-GH v0.4 files, plus one aggregate CI workflow and project bootstrap documentation. Preserve local source hashes in SOURCE_MANIFEST.json.
+`docs/ADP-GOV-AUTOMATION-001.md`: no third-party Approve for routine ADP changes; protected PR, strict Required CI (`adp-context-suite`, GitHub Actions App `15368`), external fixed-content controller and Squash Merge. Do not weaken Ruleset `26509773`. Governance changes in this repo never authorize changes to other GOV repositories.
 
-Use `python -B -m unittest discover -s tests` (expected 144). GitHub CI job `adp-context-suite` is required for `main`.
+## Run offline tests
 
-All GitHub Checkpoint output is an **unverified candidate** until protected independent acceptance. No LLM summary or self-check provides issuer authority.
+`python -B -m unittest discover -s tests -v`
+
+The CTX-A4-PUBLISH proposal increases the test count to **201**, with 24 additional negative/positive publication integrity tests and an offline validator invoked by the Required CI workflow. `source` integrity and GitHub observation are **not Issuer attestation**.
+
+Verify the first public-task candidate locally from the repository root:
+
+`python -B -m adp_context.canonical_publication --repo-root . --repository Pochun2/ADP-GITHUB-CORE --baseline-sha 024b04ac8216125ba6258556f68d2587fcc6875a`
+
+The committed `candidate.json` remains labeled an untrusted candidate. A separate protected-branch, fixed-SHA readback can establish versioned publication of those bytes, not automatic recovery authorization. See `docs/ADP-CANONICAL-PUBLICATION-001.md`.
+
+**Security:** No Trusted Issuer key or independent certificate deployed; Gate A BLOCKED_UNVERIFIED, T+1 PAUSED_MANUAL, NO ACCOUNT/ORDER. Cross-Agent recovery remains untested.
