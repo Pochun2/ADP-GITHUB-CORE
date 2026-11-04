@@ -1,0 +1,43 @@
+{
+  "schema": "adp-context-v1",
+  "project_id": "adp-example",
+  "task_id": "CTX-001",
+  "repository": "example/adp-demo",
+  "baseline_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "head_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "policy_ref": "PROPOSED-CTX-V1-NOT-APPROVED",
+  "status": "BLOCKED",
+  "completed_steps": [
+    "Offline contract demonstration only"
+  ],
+  "pending_steps": [
+    "Verify actual remote GitHub state",
+    "Implement protected evidence collector"
+  ],
+  "blockers": [
+    "Gate A BLOCKED/UNVERIFIED",
+    "Trusted Issuer NOT_DEPLOYED"
+  ],
+  "evidence_refs": [
+    {
+      "locator": "docs/proposal.md",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "claim_level": "REPORTED"
+    }
+  ],
+  "decision_refs": [],
+  "non_negotiables": [
+    "NO ACCOUNT/ORDER",
+    "T+1 PAUSED_MANUAL",
+    "No issuer credentials in Codex"
+  ],
+  "last_verified_at_utc": null,
+  "next_action": "Verify real remote SHA and policies before work",
+  "context_sources": [
+    {
+      "locator": "docs/proposal.md",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "claim_level": "REPORTED"
+    }
+  ]
+}

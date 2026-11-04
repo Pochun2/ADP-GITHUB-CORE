@@ -1,0 +1,28 @@
+name: ADP Context full contract suite
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  adp-context-suite:
+    name: adp-context-suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: All offline contract tests
+        run: python -B -m unittest discover -s tests -v
+      - name: Test count guard
+        run: python -B -c "import unittest; n=unittest.defaultTestLoader.discover('tests').countTestCases(); print('TEST_COUNT='+str(n)); assert n==144"
+      - name: Offline boundaries
+        run: |
+          python -B -m adp_context self-check
+          python -B -m adp_context.github_evidence --self-check
+          python -B -m adp_context.checkpoint_store --self-check
+          python -B -m adp_context.github_checkpoint self-check

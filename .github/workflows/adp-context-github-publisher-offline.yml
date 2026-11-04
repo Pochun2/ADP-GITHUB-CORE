@@ -1,0 +1,21 @@
+name: ADP Context A3-GH publisher candidate offline tests
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  adp-context-github-publisher-offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Offline A1-A3-GH regression
+        run: python -B -m unittest discover -s tests -v
+      - name: No GitHub publishing in CI
+        run: echo 'OFFLINE_ONLY NO_GITHUB_WRITE NO_ISSUER_KEY NO_AUTO_MERGE GATE_A_BLOCKED'
