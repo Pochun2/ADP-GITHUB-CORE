@@ -1,0 +1,16 @@
+{
+  "schema": "adp-cost-ratecard-v1",
+  "as_of_utc": "2026-11-05T00:00:00Z",
+  "currency": "USD",
+  "denominator": 1000000,
+  "pricing_source": {
+    "codex_credits": "https://learn.chatgpt.com/docs/pricing",
+    "api_prices": "https://developers.openai.com/api/docs/pricing"
+  },
+  "models": {
+    "gpt-6.1-sol": {
+      "credits_per_million": {"uncached_input":"50", "cached_input":"2.5", "output":"250"},
+      "api_usd_per_million": {"uncached_input":"2", "cached_input":"0.1", "output":"10"}
+    }
+  }
+}
